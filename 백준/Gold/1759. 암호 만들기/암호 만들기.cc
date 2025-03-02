@@ -7,7 +7,6 @@ using namespace std;
 int L, C;
 vector<char> v;
 
-vector<bool> visited;
 void MakeComb(int index, int cnt, vector<char>& comb);
 bool CheckJaMo(vector<char> comb);
 
@@ -18,7 +17,6 @@ int main(){
         cin >> input;
         v.push_back(input);
     }
-    visited.resize(C, false);
     sort(v.begin(), v.end());
     
     vector<char> comb;
@@ -39,14 +37,9 @@ void MakeComb(int index, int cnt, vector<char>& comb){
     }
 
     for(int i = index; i<C; i++){
-        if(visited[i]){
-            continue;
-        }
-        visited[i] = true;
         comb.push_back(v[i]);
-        MakeComb(i, cnt+1, comb);
+        MakeComb(i+1, cnt+1, comb);
         comb.pop_back();
-        visited[i] = false;
     }
 }
 
