@@ -70,9 +70,9 @@ void Direction(char c){
 
 int solution(string dirs) {
     int answer = 0;
-    vector<char> input(dirs.begin(), dirs.end());
-    for(auto &k: input){
-        Direction(k);
+    for(int i = 0; i<dirs.length(); i++){
+        char c = dirs[i];
+        Direction(c);
     }
     answer = cnt;
     return answer;
