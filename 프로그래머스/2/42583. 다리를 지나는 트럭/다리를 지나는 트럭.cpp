@@ -34,7 +34,7 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
 // push: 남아 있는 대기 트럭이 있고, 다리가 버틸 수 있을 때 push
 // q.size() <= bridge_length 일 때 push 가능
 // heavy <= weight 일 때 push 가능
-// push => --count
+// push 했으면 --count
 // count == 0 && q.size() == 0 일 때까지 push, pop 반복 종료 조건
 // pop: <트럭, 올라간 시간 기록> 현재시간 - 올라간 시간 >= bridge_length 이면 pop가능
 // push와 pop은 동시에 가능 pop 먼저 하자.
