@@ -8,7 +8,6 @@ using namespace std;
 multiset<pair<string, string>> mset;
 string best_path;
 
-void DFS(string dep, int cnt, vector<bool> visited, string deplist);
 void DFS(string dep, int cnt, vector<bool> visited, string deplist){
     int i = 0;
     for(auto it = mset.begin(); it != mset.end(); ++it, ++i){
