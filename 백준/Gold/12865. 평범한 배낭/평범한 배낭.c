@@ -12,25 +12,18 @@ typedef struct Thing{
 Thing things[MAX_N];
 int BackPack[MAX_N][MAX_W] = {-1};
 
-int get_max(int a, int b){
-    if(a>b) return a;
-    else return b;
-}
-
 int BP(int n, int w){
-    if(n<0 || w<0){
-        return 0;
-    }
-    if(BackPack[n][w] != -1){
-        return BackPack[n][w];
-    }
-    int include, except;
-    if(n-1<0 ||  w-things[n].w < 0) include = 0;
-    else include = BP(n-1, w-things[n].w) + things[n].v;
+    if(n<0 || w<0) return 0;
+    if(BackPack[n][w] == -1){
+        int include, except;
+        if(n-1<0 ||  w-things[n].w < 0) include = 0;
+        else include = BP(n-1, w-things[n].w) + things[n].v;
 
-    if(n-1<0) except = 0;
-    else except = BP(n-1, w);
-    BackPack[n][w] = get_max(include, except);;
+        if(n-1<0) except = 0;
+        else except = BP(n-1, w);
+
+        BackPack[n][w] = include < except ? except : include;
+    }
     return BackPack[n][w];
 }
 
@@ -44,12 +37,13 @@ int main(){
         things[i].w = tmp_w;
         things[i].v = tmp_v;
     }
+
     memset(BackPack, -1, sizeof(BackPack));
     for(int i = 0; i<=K; i++){
         BackPack[0][i] = 0;
     }
-    int ans = BP(N, K);
-    printf("%d", ans);
+
+    printf("%d", BP(N, K));
 
     return 0;
 }
